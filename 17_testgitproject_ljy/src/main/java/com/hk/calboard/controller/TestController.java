@@ -4,6 +4,6 @@ public class TestController {
 
 	public String testMain() {
 		
-		return "test";
+		return "허다빈 홍가영 바보";
 	}
 }
