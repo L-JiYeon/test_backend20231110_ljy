@@ -1,0 +1,6 @@
+package com.hk.prac.dtos;
+
+//enum: 상수들의 열거... 
+public enum RoleStatus {
+	ADMIN,manager,user
+}
