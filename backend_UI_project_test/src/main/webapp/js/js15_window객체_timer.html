@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js15_window객체_timer</title>
+<!--<link rel="stylesheet" href="test.css" />-->
+<style type="text/css">
+   #clock{
+      height: 300px;
+      width: 300px;
+      border: 1px solid red;
+      background-image: url("https://mblogthumb-phinf.pstatic.net/MjAyMjA3MzFfMTk4/MDAxNjU5MjI3NzIxMzc5.9ddfn36gShxXMuABD1BB140bfY2M6TTTCqWHabX_rTkg.iyu_amo2wcLs_CHCMRws_2l4PKkdB5hz6SazwLqKrIsg.JPEG.yevely001/IMG_0796.JPG?type=w800");
+	  background-size: 400px;
+   }
+   
+   #btn{
+	   width: 50px;
+	   position: relative;
+	   top: 20px;
+	   left: 130px;
+	   cursor: pointer;
+	   background-color: deeppink;
+	   text-align: center;
+	   border-radius: 5px;
+   }
+   
+   #se{
+	   width: 140px;
+	   position: relative;
+	   top: 100px;
+	   left: 60px;
+	   font-size: 20px;
+	   font-weight: bold;
+	   background-color: white;
+	   text-align: center;
+   }
+   
+   /* 알람 설정하는 폼 */
+   #setAlarm{
+	   position: relative;
+	   top: 150px;
+	   left: 50px;
+	   display: none;
+   }
+   
+   #alarm{
+	   width: 50px;
+   }
+</style>
+<script type="text/javascript">
+   /*    
+      window객체에 구현되어 있는 메서드
+      - setInterval() / clearInterval()
+        :일정시간 간격으로 반복실행/반복기능을 종료
+        
+      - setTimeout() / clearTimerout()
+        :일정시간 지난 후 기능 실행 / 기능을 종료
+   */
+   
+   window.onload=function(){
+      //window.setInterval(기능,시간[ms]);
+      var timeViewInterval=window.setInterval(timeView,1000);
+      
+      document.getElementsByTagName("button")[0].onclick=function(){
+         //window.clearInterval(setInterval객체);
+         window.clearInterval(timeViewInterval);
+      }
+   }
+   
+   //현재시간을 출력하는 기능
+   function timeView(){
+      var date=new Date();
+      //console.log(date.toLocaleTimeString());
+      document.getElementById("se").textContent=date.toLocaleTimeString();  
+   }
+   
+   //1.알람버튼을 클릭하면 설정폼이 보이게 하는 기능
+   function view(){
+	   var doc=document.getElementById("setAlarm");
+	   if(doc.style.display=="none"){	//설정폼이 감춰져 있으면
+		   doc.style.display="block";	//보이게 함
+	   }else{
+		   doc.style.display="none";	//감추게 함
+	   }
+   }
+   
+   //알람 설정
+   function setAlarm(){
+	   var inputAlarmObj=document.getElementById("alarm");
+	   var inputAlarm=inputAlarmObj.value;	//알람설정시간 입력값
+	   var aTime=inputAlarm*1000;	//1초==1000ms 환산
+	   console.log(aTime);
+	   
+	   //설정버튼의 폰트색을 정의
+	   document.getElementById("on").style.color="red";
+	   
+	   window.setTimeout(()=>{
+		   var musicObj='<embed src="Kalimba.mp3" hidden="true" />';
+		   document.getElementById("song").innerHTML=musicObj;
+		   document.getElementById("off").disabled="";	//비활성화 ---> 활성화
+	   },aTime);
+   }
+   
+   //알람끄기
+   function finishAlarm(){
+	   document.getElementById("song").innerHTML="";
+	   document.getElementById("off").disabled="disabled";
+	   document.getElementById("on").style.color="black";
+	   document.getElementById("setAlarm").style.display="none";
+   }
+</script>
+</head>
+<body>
+<button>멈춤(clearInterval테스트용)</button>
+<div id="clock">
+   <div id="btn" onclick="view()" title="알람을 설정하세요!!">알람</div>
+   <div id="se"></div>
+   <div id="setAlarm">
+      <input type="number" id="alarm" /><b>초 후</b>
+      <button id="on" onclick="setAlarm()">설정</button>
+      <button id="off" onclick="finishAlarm()" disabled="disabled">끄기</button>
+   </div>
+</div>
+<div id="song"></div>
+</body>
+</html>
+
+

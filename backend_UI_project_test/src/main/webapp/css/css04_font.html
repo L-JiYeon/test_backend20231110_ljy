@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css04_font</title>
+<style type="text/css">
+	#p1{
+		font-size: 20px;
+		font-weight: bold;
+		font-style: italic;
+		font-variant: small-caps;
+		line-height: 50px;
+		font-family: "맑은고딕" "굴림";
+	}
+	h1{
+		background-color: yellow;
+		height: 200px;
+		text-align: center;
+		/*vertical-align: middle;*/
+		line-height: 200px;
+	}
+	
+	/*
+		1. font: [font-weight font-style font-variant]
+		2. font: [font-size/line-height]
+		3. font: [font-family]
+			-- > font : 1 2 3 순으로 작성해야 함
+		p{font : font-style font size/line-height font-family}
+	*/
+	
+	#p2{
+		font:bold italic small-caps 20px/50px '맑은 고딕';
+	}
+</style>
+</head>
+<body>
+	
+<h1>폰트 관련 속성</h1>
+<p id="p1">
+	‘주택가 흉기 위협’ 피의자 “타인 해칠 의도 없었다”
+</p>	
+
+<p id="p2">
+구속영장 심사에 출석하면서 취재진 앞에 모습을 드러냈습니다.
+
+다른 사람을 해치려 했냐는 질문에 아니라고 부인했지만, 미리 범행을 계획했는지 등 이어진 추가 질문들에 대해서는 답을 하지 않았습니다.
+
+[A 씨/음성변조 : "(다른 사람을 해할 의도 있었습니까?) 아뇨. 없었습니다. (범행 저지른 이유는 무엇입니까?) ..."]
+
+A 씨는 지난 26일 서울 은평구의 한 주택가에서 양 손에 흉기를 든 채 주변을 위협하는 등 난동을 부린 혐의를 받고 있습니다.
+</p>
+
+</body>
+</html>

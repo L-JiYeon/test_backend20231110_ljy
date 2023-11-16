@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	/*타입 선택자*/
+	p{
+		width: 800px;
+		background-color: yellow;
+	}
+	strong{
+		color: deeppink;
+	}
+	
+	/*ID선택자*/
+	#a{
+		background-color: skyblue;
+	}
+	#b{
+		background-color: slateblue;
+	}
+	
+	/*class선택자*/
+	.p{font-size: 25px;}
+	
+	/*자식선택자*/
+	#container1 #a > strong{
+		color: red;
+	}
+	
+	/*인접선택자*/
+	#container1 #c + p{	/*인접한 요소 하나만 선택*/
+		color: darkorange;
+	}
+	#container2 #c ~ p{	/*인접한 요소 다음으로 계속 선택*/
+		color: yellow;
+	}
+	#container2 p[title]{
+		background-color: green;
+	}
+	
+	/*속성선택자*/
+	#container2 p[class]{	/*속성이 존재하는지 여부로 선택*/
+		background-color: green;
+	}
+	#container2 h1[title='기사의 제목입니다.']{
+		background-color: mediumvioletred;
+	}
+	
+	/*가상선택자*/
+	a:link{
+		color: aqua;
+	}
+	a:visited{
+		color: royalblue;
+	}
+	a:active{
+		color: chartreuse;
+	}
+	#container2 p:hover{
+		background-color: lightpink;
+		cursor: pointer;
+	}
+	
+	/*수도클래스선택자*/
+	#container3 p::first-letter{
+		font-size: 40px;
+	}
+	#container3 p::first-line{
+		color: blue;
+	}
+	#container3 p:first-child{
+		background-color: goldenrod;
+	}
+	#container3 div > p:after{
+		content: "뒤에 가상의 요소가 있음";
+		color: red;
+	}
+</style>
+
+</head>
+<body>
+
+<div id="container1">
+	<h1 id="a">데브시스터즈 <strong>'브릭시티'</strong>, 출시 하루 만에 韓 애플 앱스토어 인기 순위 <strong>1위</strong> 달성</h1>
+	<h1>데브시스터즈 <strong>'브릭시티'</strong>, 출시 하루 만에 韓 애플 앱스토어 인기 순위 <strong>1위</strong> 달성</h1>
+	.....
+	<p>
+	데브시스터즈는 자사 개발 스튜디오킹덤에서 개발한 모바일 신작 <strong id="b">'브릭시티'</strong>가 글로벌 출시 하루 만에 한국 애플 앱스토어 인기 순위 1위,
+	미국 애플 앱스토어 인기 순위 7위를 달성했다고 밝혔다.
+	</p>
+	
+	<p class="p">
+	지난 24일 오전 9시 오픈한 브릭시티는 사전 다운로드를 통한 유입으로 출시 전부터 한국 애플 앱스토어 인기 순위 3위에 오르며 순조로운 출발을 알렸다.
+	이어 오후 7시 30분 경 1위에 올랐고, 이날 오전까지도 1위의 자리를 지키고 있다.
+	</p>
+	
+	<p class="p">
+	또한 미국과 캐나다 애플 앱스토어에서는 각각 나란히 인기 순위 7위까지 올랐다.
+	특히 샌드박스 장르의 핵심 시장으로 꼽히는 북미 지역에서 이 같은 순위는 괄목할 만하다는 평가다.
+	</p>
+</div>
+<hr/>
+<div id="container2">
+	<h1 id="a">데브시스터즈 <strong>'브릭시티'</strong>, 출시 하루 만에 韓 애플 앱스토어 인기 순위 <strong>1위</strong> 달성</h1>
+	<h1 title="기사의 제목입니다.">데브시스터즈 <strong>'브릭시티'</strong>, 출시 하루 만에 韓 애플 앱스토어 인기 순위 <strong>1위</strong> 달성</h1>
+	
+	<p>
+	데브시스터즈는 자사 개발 스튜디오킹덤에서 개발한 모바일 신작 <strong id="b">'브릭시티'</strong>가 글로벌 출시 하루 만에 한국 애플 앱스토어 인기 순위 1위,
+	미국 애플 앱스토어 인기 순위 7위를 달성했다고 밝혔다.
+	</p>
+	
+	<p class="p" id="c">
+	지난 24일 오전 9시 오픈한 브릭시티는 사전 다운로드를 통한 유입으로 출시 전부터 한국 애플 앱스토어 인기 순위 3위에 오르며 순조로운 출발을 알렸다.
+	이어 오후 7시 30분 경 1위에 올랐고, 이날 오전까지도 1위의 자리를 지키고 있다.
+	</p>
+	
+	<p>
+	또한 미국과 캐나다 <a href="https://www.apple.com/kr/app-store/">앱스토어</a>에서는 각각 나란히 인기 순위 7위까지 올랐다.
+	특히 샌드박스 장르의 핵심 시장으로 꼽히는 북미 지역에서 이 같은 순위는 괄목할 만하다는 평가다.
+	</p>
+</div>
+<hr/>
+<div id="container3">
+	<p>자식요소 중에서 첫번째 요소가 p태그인 요소를 선택한다.</p>
+	
+	<h1 id="a">데브시스터즈 <strong>'브릭시티'</strong>, 출시 하루 만에 韓 애플 앱스토어 인기 순위 <strong>1위</strong> 달성</h1>
+	<h1 title="기사의 제목입니다.">데브시스터즈 <strong>'브릭시티'</strong>, 출시 하루 만에 韓 애플 앱스토어 인기 순위 <strong>1위</strong> 달성</h1>
+	<div>
+		<p>
+		데브시스터즈는 자사 개발 스튜디오킹덤에서 개발한 모바일 신작 <strong id="b">'브릭시티'</strong>가 글로벌 출시 하루 만에 한국 애플 앱스토어 인기 순위 1위,
+		미국 애플 앱스토어 인기 순위 7위를 달성했다고 밝혔다.
+		</p>
+		
+		<p class="p" id="c">
+		지난 24일 오전 9시 오픈한 브릭시티는 사전 다운로드를 통한 유입으로 출시 전부터 한국 애플 앱스토어 인기 순위 3위에 오르며 순조로운 출발을 알렸다.
+		이어 오후 7시 30분 경 1위에 올랐고, 이날 오전까지도 1위의 자리를 지키고 있다.
+		</p>
+		
+		<p>
+		또한 미국과 캐나다 <a href="https://www.apple.com/kr/app-store/">앱스토어</a>에서는 각각 나란히 인기 순위 7위까지 올랐다.
+		특히 샌드박스 장르의 핵심 시장으로 꼽히는 북미 지역에서 이 같은 순위는 괄목할 만하다는 평가다.
+		</p>
+	</div>
+</div>
+
+</body>
+</html>

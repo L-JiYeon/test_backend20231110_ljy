@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js25_dom_cookie</title>
+<style type="text/css">
+   
+</style>
+<script type = "text/javascript">
+
+	/*
+		cookie: 클라이언트 측에 저장된 용량이 적은 데이터, 스크립트로 원하는 정보를 보관,유지해준다.
+				서버로 전송됨, 용량은 name=value 한쌍이 4kb로 제한, 도메인 하나당 저장 쿠키는 약 20개정도
+		저장형식: 텍스트 -> "name=value;name2=value..."
+		내용: cookieName=value;expires=유효기간;domain=xx.com;path=/path;secure=true/false
+			 값을 구분할 때 ; 으로 구분해줌
+		유효기간 설정: 쿠키 설정할 때 유효기간을 설정하지 않으면 브라우저가 종료될 때 삭제됨
+				   유효기간을 설정하는 방법은 expires나 max-age로 설정한다.
+	*/
+	
+	//파라미터 name,value,expires 값은 반드시 설정
+	function setCookie(name,value,expires,domain,path,secure){
+		
+		var cookies='';
+		// 인코딩처리 3가지
+		// - escape(): ASCII코드로 변환, 나머지는 유니코드로 변환 -> 이제 안 씀
+		// - encodeURI(): 주소와 관련된 특수문자 https://hankyung.com?key=value&key/value
+		//				  들을 제외하고 인코딩 처리 -> URI전체를 처리할 때 사용
+		// - encodeURIComponent(): 모든 문자를 인코딩 처리 -> 파라미터를 처리할 때 사용
+		cookies+=name+"="+encodeURIComponent(value);	//1. 인코딩처리: ASCII코드로 변환 'A'=65
+		var date = new Date();
+		date.setDate(date.getDate()+expires);
+		//cookies+=";expires="+date.toUTCString();	// 2. 유효기간설정: 세계표준시로 설정
+		//cookies+="'max-age="+(1000*1*60*60*24)
+		
+		if(domain){
+			cookies+=";domain="+domain;	//특정 도메인, 하위도메인에서만 사용: hk.com, sub.hk.com
+		}
+		if(path){
+			cookies+=";path="+path;	//경로: hk.com/admin/board
+		}
+		if(secure){
+			cookies+=";secure="+secure;	//https로만 접근할 수 있는지 여부 true/false
+		}
+		document.cookie=cookies;	//최종 저장하는 코드
+	}
+	
+	function removeCookie(name){
+		var date=new Date();
+		date.setDate(date.getDate()-1);	//현재날짜의 1일전으로 셋팅
+		document.cookie+=name+"=;expired="+date.toUTCString();
+		//document.cookie=name+"=;max-age=0";
+	}
+	
+	//실습문제: 원하는 쿠키 값을 가져오기 -> "name=value;name=value;name=value"
+	function getCookie(cookieName){
+		//alert(document.cookie);
+		//String.split(";"): ";"기준으로 잘라서 배열로 반환
+		var cookieSplit=document.cookie.split(";");	//["name=value","name=value",...]
+		var value="";
+		for(var i=0; i<cookieSplit.length;i++){
+			if(cookieSplit[i].indexOf(cookieName) != -1){	//존재여부 판단
+			//			"name=value". [name,value][1]
+				value=cookieSplit[i].split("=")[1];	// "name=value" -> [name, value]
+				console.log("저장된 쿠키값:"+value);
+				return decodeURIComponent(value);
+			}
+		}
+		console.log("저장된 쿠키값:"+value);
+		return null;
+	}
+</script>
+</head>
+<body>
+	
+<button onclick="setCookie('user3','hk3',1)">쿠키추가</button>
+<button onclick="removeCookie('user1')">쿠키값삭제하기</button>
+<button onclick="getCookie('user1')">쿠키값가져오기</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

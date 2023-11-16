@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js16_location객체</title>
+<style type="text/css">
+   
+</style>
+<script type = "text/javascript">
+	function locTest(){
+		//location.href="js16_window객체_timer.html";
+		//location/assign("js15_window객체_timer.html");	//href와 동일한 기능 제공
+		//location.reload();	//새로고침
+		//location.replace("js15_window객체_timer.html");	//페이지 이동 -> 이력이 남지 않는다. //뒤로가기 안됨
+		
+		//브라우저의 targer: top, parent, self, name속성이름
+		//top.location.href="URL"
+		subframe.location.href="js10_Array객체.html";
+	}
+
+</script>
+</head>
+<body>
+
+<h1>location객체</h1>
+<script type="text/javascript">
+	document.write("hash:"+location.hash+"<br/>");
+	document.write("search:"+location.search+"<br/>");
+	document.write("host:"+location.host+"<br/>");
+	document.write("port:"+location.port+"<br/>");
+	document.write("pathname:"+location.pathname+"<br/>");
+	document.write("protocol:"+location.protocol+"<br/>");
+	document.write("href:"+location.href+"<br/>");			//외우기
+</script>
+<a href="js16_location객체.html#id=hk&name=hankyung">전송</a>
+<button onclick="locTest()">이동</button>
+<iframe name="subframe" src="js07_객체_함수의사용.html" width="500px" height="500px"></iframe>
+</body>
+</html>

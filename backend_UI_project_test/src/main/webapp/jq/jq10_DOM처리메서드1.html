@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq10_DOM처리메서드1</title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+	.insert1,.insert2{
+		border: 1px solid red;
+	}
+</style>
+<script type="text/javascript">
+	/*
+		DOM처리메서드의 개념 2가지
+		- 내부에 추가하는 기능
+			JS: innerHTML, textContent, appendChild(), insertBefore()
+			JQ: html()   , text()     , append()     , prepend()		
+		- 외부에 추가하는 기능
+			JQ: after() , before()
+		기타
+		- 삭제
+			jQ: remove()
+				empty()
+				detach()
+		- 부모로 추가: 타겟을 감싼다
+			wrap() : 부모요소 추가
+			unWrap(): 부모요소 삭제
+	*/
+	
+	$(function(){
+		var count=0;
+		$("button").eq(0).click(function(){
+			var $p=$("<p></p>");// 객체생성
+			$p.text((count++)+": prepend메서드");
+			$p.addClass("prepend");
+			$(".insert1").prepend($p);  
+			
+			$(".insert1").prepend( "<p class='prepend'>"
+									+ " <b>prepend메서드</b>"
+									+ "</p>"
+									);
+		});
+		$("button").eq(1).click(function(){
+			$(".insert1").append("<p class='append'>"+(count++)+"append메서드</p>");
+		});
+		
+		$("button").eq(2).click(function(){
+			$(".insert1").html("<p class='append'>html메서드</p>");	//set개념
+			var val=$(".insert1").html();	//get개념
+			
+		//	eleOBJ.innerHTML="<p>";		//set
+		//	var val2=eleOBJ.innerHTML;	//get
+		});
+		
+		$("button").eq(3).click(function(){
+			$(".insert1").text("text메서드");
+		});
+		
+		$("button").eq(4).click(function(){
+			var ele=$(".insert1").eq(0).children().first();
+			$(".insert1").eq(1).append(ele);
+		});
+		
+		//외부추가하기
+		$("button").eq(5).click(function(){
+			$(".insert2").eq(0).after(
+				"<p class='after'>"+(count++)+"after메서드</p>");
+		});
+		$("button").eq(6).click(function(){
+			$(".insert2").eq(0).before(
+				"<p class='after'>"+(count++)+"after메서드</p>");
+		});
+		$("button").eq(7).click(function(){
+			$(".insert2").eq(1).after($(".insert2").eq(0).children().first());
+		});
+		
+	});	//onload종료
+</script>
+</head>
+<body>
+<h1>내부요소추가하기</h1>
+<button>prepend</button>
+<button>append</button>
+<button>html</button>
+<button>text</button>
+<button>DOM이동</button>
+<div class="insert1">
+	<p class="a">내부추가하기</p>
+</div>
+<div class="insert1">
+	<p class="a">이동시키기</p>
+</div>
+<hr/>
+<h1>외부요소 추가하기</h1>
+<button>after</button>
+<button>before</button>
+<button>DOM이동</button>
+<div class="insert2">
+	<p class="a">외부추가하기</p>
+</div>
+<div class="insert2">
+	<p class="a">이동시키기</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

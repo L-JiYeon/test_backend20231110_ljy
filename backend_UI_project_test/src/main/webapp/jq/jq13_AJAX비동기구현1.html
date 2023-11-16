@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq13_AJAX비동기구현1</title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+   
+   table{width: 400px;}
+   table tr:nth-child(odd){
+	   background-color: orange;
+   }
+   fieldset{
+	   width: 400px;
+   }
+   td{padding:5px;}
+   
+</style>
+<script type = "text/javascript">
+	
+	/*
+		ajax()에서 사용하는 기본 속성
+		- url: 요청할 페이지의 위치(emplist.xml)		ex) test/page/emplist.xml
+		- method: 요청방식(post/get)
+		- data: 요청할 페이지에 전송할 데이터
+		- dataType: 응답 받을 데이터의 타입(json/xml/html 등등...)
+		- async: 자바스크립트 코드를 비동기로 실행할지 말지 여부 정의(true/false) (async:비동기 / sync:동기)
+		- success: 서버통신에 성공했다면 정의된 함수를 실행시킴
+		- error: 서버통신 실패했을때 정의된 함수를 실행시킴
+	*/
+	
+	$(function(){
+		$("#emp_search").click(function(){
+			//사원번호 구함
+			var empId=$("input[name=empId]").val();	//val() -> value속성을 의미
+			
+			if(empId!=null&&empId!=""&&!isNaN(empId)){
+					//alert(empId);
+				$.ajax({
+					url:"emplist.xml",
+					method:"get",
+					async:false,	//페이지를 동기/비동기 처리하는 개념X -> ajax메서드의 실행방식을 의미함
+	//				data:{"id":"hk","name":"hankyung".....}
+					dataType:"xml",
+					success:function(data){	//파라미터인 data에 응답데이터가 받아짐
+	//					alert(data);
+						var obj=$(data);
+	//					alert(obj.find("ROW").length);
+	//					alert(obj.find("ROW").eq(0).find("LAST_NAME").text());
+						
+						var empRow=null;	//검색한 사원의 정보를 담고 있는 ROW객체
+						
+						obj.find("EMPLOYEE_ID").each(function(){
+							if($(this).text()==empId){
+								empRow=$(this).parent();	//ROW[id,name,email...]
+								return false;	//함수종료
+							}
+						});	//each 종료
+						
+						if(empRow == null){
+							alert("검색결과가 존재하지 않습니다.");
+						}else{
+							//ROW객체를 input 요소에 출력만 하면 됨
+							$("table input").each(function(i){
+								$(this).val(empRow.children().eq(i).text());
+							});
+						}
+						
+						//ROW객체를 input요소에 출력만 하면 됨
+						$("table input").each(function(i){
+							$(this).val(empRow.children().eq(i).text());
+						})
+						
+												
+						//문제1: 사원번호는 숫자이기 때문에 입력시 문자를 입력하면 알려주기("숫자만 입력 가능합니다.")
+						//문제2: 검색결과가 없는 경우에는 "검색결과가 존재하지 않습니다." 알려주기
+						
+						
+					},	//success종료
+					error:function(request,error){
+						alert("통신실패: "+request.status+","+error);
+					}
+				});
+			}
+			else{
+				alert("반드시 입력해야 하며, 숫자만 입력 가능합니다.");
+			}
+		});
+	});
+
+</script>
+</head>
+<body>
+
+<h1>사원정보조회하기(1명에 대한 정보)</h1>
+<fieldset>
+	<legend>사원정보조회</legend>
+	<label>사원정보:</label>
+	<input type="text" name="empId" />
+	<input type="button" value="조회" id="emp_search" />
+</fieldset>
+
+<table border="1">
+	<tr>
+		<td>사원번호</td>
+		<td><input type="text" name="empNum" readonly="readonly" /></td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td><input type="text" name="LastName" readonly="readonly" /></td>
+	</tr>
+	<tr>
+		<td>이메일</td>
+		<td><input type="text" name="email" readonly="readonly" /></td>
+	</tr>
+	<tr>
+		<td>전화번호</td>
+		<td><input type="text" name="phone" readonly="readonly" /></td>
+	</tr>
+	<tr>
+		<td>입사일</td>
+		<td><input type="text" name="hire" readonly="readonly" /></td>
+	</tr>
+</table>
+
+</body>
+</html>

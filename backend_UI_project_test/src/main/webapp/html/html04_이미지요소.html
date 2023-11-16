@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>html04_이미지요소.html</title>
+</head>
+<body>
+<h1>이미지요소</h1>
+<p>이미지 요소는 이미지를 웹페이지에 표현할때 <br/>
+   사이즈 조절을 할 때 해상도를 고려해야 한다.
+</p>
+<p>
+	<img src="https://cdn.huffingtonpost.kr/news/photo/202303/207797_320533_4740.png" />
+	<a href="https://www.huffingtonpost.kr/news/articleView.html?idxno=207797">
+		<img height="200px" width="200px"
+		src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA2MDlfMTY1%2FMDAxNjg2Mjk2ODI4Mjgy.0Qlw1UdWF3Wf__gMS3yy_1H7qnW0_4Oeludwzpbo5wsg.mclJ9pwoxqpU-3ruwg9VCy2iGS3YBRzWiOHKwa5D4HUg.JPEG.eun9526%2FIMG_1379.JPG&type=sc960_832"
+		alt="집가고 싶습니다" />
+	</a>
+</p>
+<hr/>
+<h1>이미지 맵 사용하기</h1>
+<img src = "img/base.jpg" alt="야구선수 사진입니다." usemap="#player"/>
+<map name="player">
+	<area alt="1번선수"
+		  href="https://tigers.co.kr/"
+		  shape="rect"
+		  coords="23,13,277,286"
+		  target="_blank"
+	 />
+	 <area alt="양현종"
+		  href="https://namu.wiki/w/%EC%96%91%ED%98%84%EC%A2%85"
+		  shape="rect"
+		  coords="621,29,863,268"
+		  target="_blank"
+	 />
+</map>
+<hr/>
+<h1>링크요소와 target 사용하기</h1>
+<a target="tt" href="https://tigers.co.kr/">이동</a>
+<iframe name="tt" src="html03_텍스트관련요소.html"
+		style="height: 500px; width: 500px;"></iframe>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

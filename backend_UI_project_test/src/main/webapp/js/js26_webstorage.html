@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js26_webstorage</title>
+<style type="text/css">
+   
+</style>
+<script type = "text/javascript">
+
+	/*
+		Web Storage
+		- sessionStorage: 웹페이지가 열려 있는 동안 값을 유지
+						  데이터를 서버로 전송하지 않는다.
+						  저장공간이 쿠키보다 크다(최대 5MB)
+		
+		- localStorage: 웹페이지가 종료되어도 값을 유지
+						유효기간 없이 데이터를 저장한다. js를 이용하거나 캐시를 삭제하면 사라짐
+						저장공간 최대 5MB
+	*/
+	
+	//session
+	function sessionSetItem(){
+		sessionStorage.setItem("id","hk");
+	}
+	function sessionGetItem(){
+		alert(sessionStorage.getItem("id"));
+	}
+	function sessionRemoveItem(){
+		sessionStorage.removeItem("id");
+	}
+	function sessionClearItem(){
+		sessionStorage.clear();
+	}
+	
+	//local
+	function localSetItem(){
+		localStorage.setItem("id","hk");
+	}
+	function localGetItem(){
+		alert(localStorage.getItem("id"));
+	}
+	function localRemoveItem(){
+		localStorage.removeItem("id");
+	}
+	function localClearItem(){
+		localStorage.clear();
+	}
+
+</script>
+</head>
+<body>
+
+<h1>sessionStorage</h1>
+<button onclick="sessionSetItem()">SetSession</button>
+<button onclick="sessionGetItem()">GetSession</button>
+<button onclick="sessionRemoveItem()">RemoveSession</button>
+<button onclick="sessionClearItem()">ClearSession</button>
+<h1>localStorage</h1>
+<button onclick="localSetItem()">SetLocal</button>
+<button onclick="localGetItem()">GetLocal</button>
+<button onclick="localRemoveItem()">RemoveLocal</button>
+<button onclick="localClearItem()">ClearLocal</button>
+
+</body>
+</html>

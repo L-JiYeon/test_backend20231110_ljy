@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq01_환경설정및작성방법</title>
+<style type="text/css">
+   
+</style>
+<script type = "text/javascript" src="jquery_3.7.1.js"></script>
+<!--CDN방식-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-latest.js"></script>-->
+<script type="text/javascript">
+   
+   /*
+      설정하기:    - 내부파일 링크
+            - URL링크(CDN)
+            
+      작성방식
+      $ 특수문자를 사용. $의 의미 -> $() == jquery()
+      js: load 이벤트를 작성  -> onload = function(){}
+      jq:                -> $(function(){}) 1번 방법
+                     -> $(document).ready(function(){}) 2번 방법
+   */
+   
+   // $(function(){}): window.onload=function(){} 기능
+   $(function(){
+      //alert("jquery 안녕~~");
+      $("img").click(function(){
+        alert("이미지를 클릭합니다");
+     });
+   });
+   
+   function imgSize(){
+      //var imgJS=document.querySelectorAll("div > img");   //JS
+      var img=$("div > img");   // img요소를 객체 정의함과 동일
+      //imgJS.css();   //(X) JS와 JQ를 섞어서 쓰면 안 됨  *객체의 유형이 다를 경우*
+      
+      //img.css("width","100px");
+      //img.css("height","100px");
+      img.css({"width":"100px","height":"100px"});
+   }
+   
+   function highlight(){
+      // 목록 중에 인덱스가 1인 목록을 강조하기
+      $("ol > li ").eq(1).css("background-color","yellow");
+      $("ol > li ").last().css("background-color","yellow"); 
+   }
+   
+   function addImg(){
+      $("div").eq(0).append("<img src='../js/img/2.jpg'/>");
+      
+      var img = document.createElement("img");
+      img.setAttribute("src","../html/img/조용.png");
+      document.querySelectorAll("div")[1].appendChild(img);
+      
+      document.querySelectorAll("div")[1].innerHTML += "<img src ='../js/img/1.jpg' />";
+   }
+   
+   function hideImg(){
+     // $("img").css("display","none");
+      $("img").hide(2000);
+   }
+</script>
+</head>
+<body>
+   
+<h1>jquery의 내용</h1>
+<ol>
+   <li>셀렉터표현식</li>
+   <li>DOM탐색메서드</li>
+   <li>DOM처리메서드</li>
+   <li>이벤트메서드</li>
+   <li>이펙트메서드</li>
+   <li>Ajax메서드</li>
+   <li>기타메서드</li>
+   
+</ol>
+
+<button onclick="imgSize()">이미지 축소</button>
+<button onclick="highlight()">리스트 강조하기</button>
+<button onclick="addImg()">이미지 추가</button>
+<button onclick="hideImg()">이미지 숨기기</button>
+<hr/>
+<div><img src= "../js/img/0.jpg" alt="짜장면" /></div>
+<div><img src= "../js/img/0.jpg" alt="짜장면" /></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
