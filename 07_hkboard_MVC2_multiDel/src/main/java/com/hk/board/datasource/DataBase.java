@@ -22,7 +22,7 @@ public class DataBase {
 	
 	//2단계: DB연결
 	public Connection getConnection() throws SQLException {
-		String url="jdbc:mariadb://localhost:3306/hkedu";
+		String url="jdbc:mariadb://192.168.5.170:3306/hkedu";
 		String user="root";
 		String password="0905";
 		

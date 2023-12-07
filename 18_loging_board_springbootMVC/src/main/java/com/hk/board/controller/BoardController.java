@@ -3,6 +3,7 @@ package com.hk.board.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.hk.board.command.DelBoardCommand;
@@ -67,6 +70,7 @@ public class BoardController {
 		
 		return "redirect:/board/boardList";
 	}
+	 
 	
 	//상세보기
 	@GetMapping(value = "/boardDetail")

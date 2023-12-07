@@ -3,6 +3,7 @@ package com.hk.board.service;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,7 @@ public class BoardService {
 		}
 		
 	}
+	
 	//상세내용조회
 	public BoardDto getBoard(int board_seq) {
 		return boardMapper.getBoard(board_seq);
