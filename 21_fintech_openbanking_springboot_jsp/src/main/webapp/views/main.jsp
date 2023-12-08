@@ -1,3 +1,6 @@
+<%@page import="com.hk.fintech.apidto.UserMeAccountDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.hk.fintech.apidto.UserMeDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
@@ -21,6 +24,7 @@
 	</style>
 	<script type="text/javascript">
 
+		//나의정보2 feign 사용
 		function myInfo_feign(){
 			location.href="/banking/myinfo_feign";
 		}
@@ -126,6 +130,19 @@
 				   
 			window.open(url,"인증하기","width=400px,height=600px");	   
 		}
+		
+		//카드등록하기(센터인증 이용기관용: 사용자 인증후에 계좌 등록 가능)
+		function addCard(){
+			var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+				   +"response_type=code&" //고정값 code: 인증요청시 반환되는 값의 형식의미
+				   +"client_id=4987e938-f84b-4e23-b0a2-3b15b00f4ffd&" //이용기관의 ID
+				   +"redirect_uri=http://localhost:8087/banking/addaccount&"//응답URL
+				   +"scope=login cardinfo&" //토큰의 권한
+				   +"state=12345678123456781234567812345678&" //32자리 난수 설정
+				   +"auth_type=0"; //0:최초 한번 인증, 2:인증생략
+				   
+			window.open(url,"인증하기","width=400px,height=600px");	   
+		}
 	</script>
 
 </head>
@@ -164,6 +181,23 @@
 <!-- 	                      	</div> -->
 <!-- 	                      	<div class="balance_amt"></div> -->
 <!-- 	                    </div>	 -->
+                    </div>
+                    <div id="feignList">
+                    	<%
+                    		UserMeDto dto=(UserMeDto)request.getAttribute("userMeDto");
+                    		if(dto!=null){
+	                    		List<UserMeAccountDto>list=dto.getRes_list();
+	                    		
+	                    		for(UserMeAccountDto udto:list){
+	                    			%>
+	                    			<p><%=udto.getAccount_alias() %><br>
+	                    			   <%=udto.getFintech_use_num() %>
+	                    			   [<%=udto.getBank_name() %>]
+	                    			</p>
+	                    			<%
+	                    		}//for
+                    		}//if
+                    	%>
                     </div>
                 </div>
             </div>
