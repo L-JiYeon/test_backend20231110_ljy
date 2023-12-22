@@ -61,6 +61,12 @@ public class CalServiceImp implements ICalService{
 		//2.월의 마지막 날 구하기
 		int lastDay=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 		
+		String id="kbj";
+		//makeCalendar()에서 실행해야 12->1   1->12 처리시 정상실행할 수 있음
+				String yyyyMM=year+Util.isTwo(month+"");//202311 6자리변환
+				List<CalDto>clist=calViewList(id, yyyyMM);
+		request.setAttribute("clist", clist);
+				
 		map.put("year", year);
 		map.put("month", month);
 		map.put("dayOfWeek", dayOfWeek);
@@ -91,9 +97,9 @@ public class CalServiceImp implements ICalService{
 		int count=calMapper.insertCalBoard(dto);
 		
 		//예외발생코드 추가
-		if(count>0) {
-			throw new Exception("트랜젝션 실행됨");
-		}
+//		if(count>0) {
+//			throw new Exception("트랜젝션 실행됨");
+//		}
 		
 		return count>0?true:false;
 	}

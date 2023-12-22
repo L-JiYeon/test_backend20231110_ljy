@@ -58,9 +58,10 @@ public class CalController {
 		Map<String, Integer>map=calService.makeCalendar(request);
 		model.addAttribute("calMap", map);
 		
-		String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
-		List<CalDto>clist=calService.calViewList(id, yyyyMM);
-		model.addAttribute("clist", clist);
+		//makeCalendar()에서 실행해야 12->1   1->12 처리시 정상실행할 수 있음
+//		String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+//		List<CalDto>clist=calService.calViewList(id, yyyyMM);
+//		model.addAttribute("clist", clist);
 		
 		return "thymeleaf/calboard/calendar";
 	}
