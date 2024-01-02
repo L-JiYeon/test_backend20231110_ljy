@@ -42,7 +42,7 @@ public class CalController {
 		logger.info("달력보기"); 
 		
 		//달력에서 일일별 일정목록 구하기
-		String id="kbj";//나중에 세션에서 가져온 아이디 사용
+		String id="ljy";//나중에 세션에서 가져온 아이디 사용
 		
 		String year=request.getParameter("year");
 		String month=request.getParameter("month");
